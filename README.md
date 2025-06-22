@@ -4,6 +4,9 @@
 
 This project is a simple implementation of the classic **Rock Paper Scissors** game using JavaScript. The game runs in the console and allows the user to play against the computer for 5 rounds. Scores are displayed in the console after each round.
 
+👉 A more advanced **interactive version** of this project is available in the [`feature/interactive-ui`](https://github.com/sid-shinseo/Project-Rock-Paper-Scissors-odin/tree/feature/interactive-ui) branch.  
+It includes buttons, score display in the UI, and a "Play Again" feature — no need to use the console!
+
 ## Features
 
 - The computer randomly chooses between "rock", "paper", or "scissors".
