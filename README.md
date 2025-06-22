@@ -2,46 +2,53 @@
 
 ## Description
 
-This project is a simple implementation of the classic **Rock Paper Scissors** game using JavaScript. The game runs in the console and allows the user to play against the computer for 5 rounds. Scores are displayed in the console after each round.
+This project is an interactive implementation of the classic **Rock Paper Scissors** game using JavaScript. The user plays against the computer by clicking buttons on the webpage. The game lasts for exactly 5 rounds, with live score updates and round results displayed directly on the page. At the end of the game, a clear final winner message appears, and the user can restart the game by clicking the **Play Again** button.
+
+If you want to see the **first version** of this project, which runs in the console with user input via prompts, check out the [first version here](https://github.com/sid-shinseo/Project-Rock-Paper-Scissors-odin).
 
 ## Features
 
-- The computer randomly chooses between "rock", "paper", or "scissors".
-- The user is prompted to enter their choice via a prompt box.
-- User input is case-insensitive (uppercase or lowercase is accepted).
-- After each round, a message indicates who won.
-- The game consists of 5 rounds, with scores updated after each round.
-- The final score is displayed in the console.
+- User chooses between Rock 🪨, Paper 📄, and Scissors ✂️ via buttons.
+- The computer randomly selects its choice each round.
+- Game consists of exactly 5 rounds.
+- Scores and round results are updated and displayed dynamically on the page.
+- Final winner (or draw) is clearly indicated with colored messages.
+- Buttons are disabled at the end of the game to prevent extra input.
+- A **Play Again** button appears after the game ends to restart the match without reloading the page.
 
 ## Technologies Used
 
-- Basic HTML for page structure
-- JavaScript for game logic
-- CSS via [Simple.css](https://simplecss.org/) for minimal styling
+- HTML for page structure and interactive buttons.
+- JavaScript for game logic, UI updates, and interactivity.
+- CSS via [Simple.css](https://simplecss.org/) for clean and minimal styling.
 
 ## How to Play
 
 1. Open the `index.html` file in a web browser.
-2. The game will start automatically and ask you to choose "rock", "paper", or "scissors" through a prompt.
-3. Enter your choice and confirm.
-4. The result of each round will be displayed in the browser’s console (press F12 or right-click → Inspect → Console to view).
-5. Scores are updated after each round for a total of 5 rounds.
+2. Click one of the three buttons: Rock 🪨, Paper 📄, or Scissors ✂️.
+3. The computer will randomly choose its move.
+4. The round result and current scores will be displayed on the page.
+5. Repeat for 5 rounds.
+6. After the 5th round, the final winner message will be shown and the buttons will be disabled.
+7. Click the **Play Again** button to reset the game and start a new match.
 
 ## Code Structure
 
-- **index.html**: Basic HTML structure with the JavaScript linked.
-- **script.js**: Contains all the game functions:
-  - `getComputerChoice()` — randomly selects the computer’s choice.
-  - `getHumanChoice()` — prompts and validates the user’s choice.
-  - `playRound(humanChoice, computerChoice)` — plays one round and returns the winner.
-  - `playGame()` — main loop that runs 5 rounds and keeps score.
+- **index.html**: Contains the HTML layout, buttons for choices, placeholders for messages and scores, and the **Play Again** button.
+- **script.js**: Handles all game logic and UI updates:
+  - `getComputerChoice()` — randomly selects the computer’s move.
+  - `playRound(humanChoice, computerChoice)` — determines the winner of each round.
+  - Event listeners on choice buttons to play rounds and update the interface.
+  - Tracks rounds played and disables buttons after 5 rounds.
+  - Displays the final winner message in color.
+  - Includes functionality to reset the game when clicking **Play Again**.
 
 ## Possible Improvements
 
-- Display results and scores directly on the webpage instead of the console.
-- Add interactive buttons and animations for a better UI.
-- Allow the number of rounds to be configurable.
+- Add animations or sound effects for better user experience.
+- Allow the user to configure the number of rounds.
 - Add a multiplayer mode.
+- Improve responsive design and mobile friendliness.
 
 ---
 
@@ -52,5 +59,3 @@ Project completed as part of The Odin Project.
 ### Author
 
 Dleffy / Sid-Shinseo
-
----

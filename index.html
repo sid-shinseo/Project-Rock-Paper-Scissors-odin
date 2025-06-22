@@ -1,15 +1,36 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="https://cdn.simplecss.org/simple.min.css">
-    <script src="/script.js"></script>
-    <title>Project Rock Paper Scissors</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <link rel="stylesheet" href="https://cdn.simplecss.org/simple.min.css" />
+  <title>Project Rock Paper Scissors</title>
 </head>
 <body>
-    <h1>Project Rock Paper Scissors</h1>
+  <main>
+    <h1>Rock Paper Scissors</h1>
 
-    
+    <section>
+      <h2>Make your choice</h2>
+      <button id="rock">Rock 🪨</button>
+      <button id="paper">Paper 📄</button>
+      <button id="scissors">Scissors ✂️</button>
+    </section>
+
+    <section>
+      <h2>Round Result</h2>
+      <p id="round-message">Make your move!</p>
+      <p id="choices"></p>
+       <button id="play-again" style="display:none; margin-top: 1em;">Play Again</button>
+    </section>
+
+    <section>
+      <h2>Score</h2>
+      <p>You: <span id="human-score">0</span></p>
+      <p>Computer: <span id="computer-score">0</span></p>
+    </section>
+  </main>
+
+  <script src="script.js"></script>
 </body>
 </html>

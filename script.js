@@ -1,72 +1,97 @@
-// getComputerChoice ==> return le choix de l'ordinateur (rock paper or scissors)
-// getHumanChoice ==> input du choix de l'utilisateur
-// humanScore | computerScore variable 
-// utilise ToLowercase pour que l'utilisateur puisse utiliser minuscule/majuscule
-// playRound ==> debut d'un round
+let humanScore = 0;
+let computerScore = 0;
+let roundsPlayed = 0;
+const totalRounds = 5;
 
+const buttons = document.querySelectorAll("button:not(#play-again)"); // tous sauf Play Again
+const playAgainButton = document.getElementById("play-again");
+const roundMessage = document.getElementById("round-message");
+const humanScoreSpan = document.getElementById("human-score");
+const computerScoreSpan = document.getElementById("computer-score");
+const choicesDisplay = document.getElementById("choices");
 
-
-function getComputerChoice(){
-    const choices = ["rock", "paper", "scissors"];
-    const randomIndex = Math.floor(Math.random() * choices.length);
-
-    return choices[randomIndex];
+function getComputerChoice() {
+  const choices = ["rock", "paper", "scissors"];
+  const randomIndex = Math.floor(Math.random() * choices.length);
+  return choices[randomIndex];
 }
 
-function getHumanChoice() {
-    const validChoices = ["rock", "paper", "scissors"];
-    let choice = prompt("Choose rock, paper, or scissors:");
+function playRound(humanChoice, computerChoice) {
+  if (humanChoice === computerChoice) return "tie";
 
-    // Keep asking until the input is valid
-    while (!choice || !validChoices.includes(choice.toLowerCase())) {
-        choice = prompt("Invalid choice. Please choose rock, paper, or scissors:");
-    }
-
-    return choice.toLowerCase();
+  if (
+    (humanChoice === "rock" && computerChoice === "scissors") ||
+    (humanChoice === "paper" && computerChoice === "rock") ||
+    (humanChoice === "scissors" && computerChoice === "paper")
+  ) {
+    return "human";
+  } else {
+    return "computer";
+  }
 }
 
-function playRound(humanChoice, computerChoice){
-    
+function endGame() {
+  buttons.forEach(button => button.disabled = true);
+  if (humanScore > computerScore) {
+    roundMessage.textContent = "🎉 You won the game! Congratulations! 🎉";
+    roundMessage.style.color = "green";
+  } else if (computerScore > humanScore) {
+    roundMessage.textContent = "💻 Computer won the game! Try again! 💻";
+    roundMessage.style.color = "red";
+  } else {
+    roundMessage.textContent = "🤝 It's a draw game!";
+    roundMessage.style.color = "orange";
+  }
+  playAgainButton.style.display = "inline-block"; // afficher bouton play again
+}
 
-    console.log(`You chose: ${humanChoice}`);
-    console.log(`Computer chose: ${computerChoice}`);
+function resetGame() {
+  humanScore = 0;
+  computerScore = 0;
+  roundsPlayed = 0;
+  humanScoreSpan.textContent = humanScore;
+  computerScoreSpan.textContent = computerScore;
+  roundMessage.textContent = "Make your move!";
+  roundMessage.style.color = "black";
+  choicesDisplay.textContent = "";
+  buttons.forEach(button => button.disabled = false);
+  playAgainButton.style.display = "none";
+}
 
-    if(humanChoice === computerChoice){
-        console.log("It's a tie");
-        return "tie"
-    }
-    else if (
-        (humanChoice === "rock" && computerChoice === "scissors") ||
-        (humanChoice === "paper" && computerChoice === "rock") ||
-        (humanChoice === "scissors" && computerChoice === "paper")
-    ) {
-        console.log("You win this round!");
-        return "human"
+buttons.forEach((button) => {
+  button.addEventListener("click", () => {
+    if (roundsPlayed >= totalRounds) return; // ignore clicks après fin
+
+    const humanChoice = button.id;
+    const computerChoice = getComputerChoice();
+    const result = playRound(humanChoice, computerChoice);
+
+    choicesDisplay.textContent = `You chose ${humanChoice}, computer chose ${computerChoice}.`;
+
+    if (result === "human") {
+      humanScore++;
+      roundMessage.textContent = "You win this round!";
+      roundMessage.style.color = "white";
+    } else if (result === "computer") {
+      computerScore++;
+      roundMessage.textContent = "Computer wins this round!";
+      roundMessage.style.color = "white";
     } else {
-        console.log("Computer wins this round!");
-        return "computer"
+      roundMessage.textContent = "It's a tie!";
+      roundMessage.style.color = "white";
     }
-}
 
-function playGame() {
-    let humanScore = 0 ;
-    let computerScore = 0 ;
+    humanScoreSpan.textContent = humanScore;
+    computerScoreSpan.textContent = computerScore;
 
-    for (let i = 0; i < 5; i++){
-        const humanChoice = getHumanChoice();
-        const computerChoice = getComputerChoice();
+    roundsPlayed++;
 
-        const result = playRound(humanChoice, computerChoice);
-
-        if (result === "human"){
-            humanScore++
-        }
-        else if (result === "computer"){
-            computerScore++
-        }
-        
-        console.log(`Score — You: ${humanScore}, Computer: ${computerScore} /n`);
+    if (roundsPlayed === totalRounds) {
+      endGame();
     }
-}
+  });
+});
 
-playGame();
+playAgainButton.addEventListener("click", () => {
+  resetGame();
+});
